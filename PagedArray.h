@@ -29,9 +29,10 @@ public:
     void orderPages(int);
     int *(readPageInFile(int));
     void writePageInFile(Page *);
+    void writeFile();
     int getLength();
     int &(operator [](int));
-    int *(operator ()(int));
+
 };
 
 

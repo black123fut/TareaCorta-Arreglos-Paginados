@@ -6,13 +6,13 @@
 
 class Sort {
 public:
-    void quicksort(PagedArray *, int, int);
+    void quickSort(PagedArray *, int, int);
 
 private:
     PagedArray *array;
 
     void swap(int *, int *);
-    void particion(PagedArray *, int, int);
+    int partition(PagedArray *, int, int);
 };
 
 
