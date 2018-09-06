@@ -1,7 +1,9 @@
 #include <iostream>
+#include <iomanip>
 #include <fstream>
 #include "PagedArray.h"
 #include "Sort.h"
+#include "SelectionSort.h"
 
 using namespace std;
 
@@ -103,5 +105,22 @@ int main() {
 //    cout << pagedArray[0][1288] << endl;
 //    cout << pagedArray[0][513] << endl;
 
+
+    cout<<endl;
+    cout<<endl;
+    cout<<"Creo un arreglo de enteros para pasarlo a la funcion SelectionSortAl de tamano:"<<endl;
+
+    int a[]={13,2001,12,1,14,26,17};
+
+
+    cout<<(sizeof(a)/sizeof(*a))<<endl;
+
+
+    SelectionSort *x;
+    x = new SelectionSort(a);
+
+    x->SelectionSortAl();
+
     return 0;
+
 }
