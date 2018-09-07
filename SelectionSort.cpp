@@ -5,10 +5,7 @@
 #include <iostream>
 #include "SelectionSort.h"
 
-
 using namespace std;
-
-
 
 SelectionSort::SelectionSort(int *array) {
     this->arreglo=array;
@@ -17,7 +14,7 @@ SelectionSort::SelectionSort(int *array) {
 
 
     cout<<"De los que mando solo llegan dos siempre"<<endl;
-    cout << sizeof(array)/sizeof(*array) << endl;
+    cout << sizeof(array)/sizeof(array[0]) << endl;
     cout<<"############"<<endl;
 
 }
@@ -30,8 +27,8 @@ void SelectionSort:: SelectionSortAl() {
     int posicion_comparar=0;
 
 
-    while (bandera < (sizeof(arreglo)/sizeof(*arreglo))) {
-        for (int i = posicion_comparar; i < (sizeof(arreglo)/sizeof(*arreglo))-1 ; i++) {
+    while (bandera < (sizeof(arreglo)/sizeof(arreglo[0]))) {
+        for (int i = posicion_comparar; i < (sizeof(arreglo)/sizeof(arreglo[0]))-1 ; i++) {
             if (pivot>arreglo[i+1]){
                 temp=pivot;
                 pivot=arreglo[i+1];
@@ -47,7 +44,7 @@ void SelectionSort:: SelectionSortAl() {
         temp=0;
         bool comparacion_resultado = true;
 
-        for (int y=0;y <= (sizeof(arreglo)/sizeof(*arreglo))-2;y++){
+        for (int y=0;y <= (sizeof(arreglo)/sizeof(arreglo[0]))-2;y++){
             if(arreglo[y]>arreglo[y+1]){
                 comparacion_resultado=false;
             }
@@ -61,7 +58,7 @@ void SelectionSort:: SelectionSortAl() {
 
     } //Fin del while
 
-    for(int x=0;x<=(sizeof(arreglo)/sizeof(*arreglo));x++){
+    for(int x=0;x<(sizeof(arreglo)/sizeof(arreglo[0]));x++){
         cout<< arreglo[x]<<endl;
 
     }

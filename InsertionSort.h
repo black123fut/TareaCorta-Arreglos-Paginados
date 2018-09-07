@@ -5,16 +5,17 @@
 #ifndef TAREACORTA_INSERTIONSORT_H
 #define TAREACORTA_INSERTIONSORT_H
 
+#include "PagedArray.h"
+
 class InsertionSort{
 
 private:
-    int *array;
     int length;
 public:
 
-    InsertionSort(int array[]);
+    InsertionSort(PagedArray *array);
 
-    void InsertionSort1(int[], int length);
+    void InsertionSort1(PagedArray *, int length);
 
 };
 #endif
