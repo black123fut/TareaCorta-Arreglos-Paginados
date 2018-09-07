@@ -11,15 +11,15 @@ using namespace  std;
 class SelectionSort{
 
 private:
-    int *arreglo;
-    int temp;
-    int pivot;
 
 public:
 
-    SelectionSort(int array[]);
+    SelectionSort();
 
-    void SelectionSortAl();
+    void SelectionSortAl(int *arr, int n);//n es el tamano del array
+    void swap(int *xp, int *yp);
+    void printArray(int arr[], int size);
+
 
 };
 #endif //TAREACORTA_SELECTIONSORT_H

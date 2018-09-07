@@ -10,60 +10,38 @@ using namespace std;
 
 
 
-SelectionSort::SelectionSort(int *array) {
-    this->arreglo=array;
-    this->pivot=arreglo[0];
-    this->temp=0;
+SelectionSort::SelectionSort() {}
 
-
-    cout<<"De los que mando solo llegan dos siempre"<<endl;
-    cout << sizeof(array)/sizeof(*array) << endl;
-    cout<<"############"<<endl;
-
+void SelectionSort::swap(int *xp, int *yp) {
+    int temp = *xp;
+    *xp = *yp;
+    *yp = temp;
 }
 
+void SelectionSort::SelectionSortAl(int *arr, int n) {
+    int i, j, min_idx;
 
 
-void SelectionSort:: SelectionSortAl() {
+    for (i = 0; i < n-1; i++)
+    {
+        // Encuentra el elemento minimo en el array desordenado
+        min_idx = i;
+        for (j = i+1; j < n; j++)
+            if (arr[j] < arr[min_idx])
+                min_idx = j;
 
-    int bandera=0;
-    int posicion_comparar=0;
-
-
-    while (bandera < (sizeof(arreglo)/sizeof(*arreglo))) {
-        for (int i = posicion_comparar; i < (sizeof(arreglo)/sizeof(*arreglo))-1 ; i++) {
-            if (pivot>arreglo[i+1]){
-                temp=pivot;
-                pivot=arreglo[i+1];
-                arreglo[i+1]=temp;
-            }else{
-                bandera+=1;
-            }
-        }//Fin del for de comparacion
-
-        arreglo[posicion_comparar]=pivot;
-        posicion_comparar+=1;
-        pivot=arreglo[posicion_comparar];
-        temp=0;
-        bool comparacion_resultado = true;
-
-        for (int y=0;y <= (sizeof(arreglo)/sizeof(*arreglo))-2;y++){
-            if(arreglo[y]>arreglo[y+1]){
-                comparacion_resultado=false;
-            }
-        }//Fin del for de comprobacion de orden
-
-        if (comparacion_resultado==true){
-            bandera=sizeof(arreglo)/sizeof(*arreglo);
-        }else{
-            bandera=0;
-        }
-
-    } //Fin del while
-
-    for(int x=0;x<=(sizeof(arreglo)/sizeof(*arreglo));x++){
-        cout<< arreglo[x]<<endl;
-
+        // Intercambia el menor elemento encontrado con el primer elemento del array
+        swap(&arr[min_idx], &arr[i]);
     }
-
 }
+
+/* Funcion para imrimir un array */
+void SelectionSort::printArray(int *arr, int size){
+    int i;
+    for (i=0; i < size; i++)
+        printf("%d ", arr[i]);
+    printf("\n");
+}
+
+
+
