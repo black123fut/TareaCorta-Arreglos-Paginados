@@ -32,3 +32,11 @@ void Page::setItemInArray(int pos, int value) {
 void Page::moveLeft(){
     index--;
 }
+
+int Page::getPos() {
+    return pos;
+}
+
+void Page::setPos(int position) {
+    pos = position;
+}

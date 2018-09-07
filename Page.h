@@ -15,10 +15,13 @@ public:
     void setItemInArray(int, int);
     int getIndex();
     void moveLeft();
+    int getPos();
+    void setPos(int);
 
 private:
     int page[256];
     int index;
+    int pos;
     int length;
 };
 

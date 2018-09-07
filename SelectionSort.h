@@ -6,6 +6,12 @@
 #define TAREACORTA_SELECTIONSORT_H
 
 #include "iostream"
+#include "SelectionSort.h"
+#include <stdio.h>
+#include <math.h>
+#include "InsertionSort.h"
+#include "PagedArray.h"
+#include <math.h>
 using namespace  std;
 
 class SelectionSort{

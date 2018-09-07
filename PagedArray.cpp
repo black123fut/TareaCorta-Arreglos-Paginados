@@ -6,11 +6,22 @@ using namespace std;
 
 PagedArray::PagedArray() {
     page1 = new Page;
+    page1->setPos(0);
+
     page2 = new Page;
+    page2->setPos(1);
+
     page3 = new Page;
+    page3->setPos(2);
+
     page4 = new Page;
+    page4->setPos(3);
+
     page5 = new Page;
+    page5->setPos(4);
+
     page6 = new Page;
+    page6->setPos(5);
     currentPages = 0;
 
 //    createBinaryFile(resultado);
@@ -42,7 +53,7 @@ void PagedArray::createBinaryFile(ifstream* input) {
     length = index;
     FILE *file = fopen("memoria.txt", "wb");;
 
-    fwrite(array, sizeof(int), sizeof(array) / 4,file);
+    fwrite(array, sizeof(int), sizeof(array) / 4, file);
     fclose(file);
 }
 
@@ -80,7 +91,8 @@ void PagedArray::writePageInFile(Page *page) {
     file.open("memoria.txt", fstream::in | fstream::out | fstream::binary);
 
     for (int j = 0; j < 256; ++j) {
-        int pos = 4 * (j - 256 * pag);
+//        int pos = 4 * (j - 256 * pag);
+        int pos = 4 * ((256 * pag  + j) - 256 * pag ) + 4 * 256 * pag;
         file.seekp(pos, file.beg);
         file.write((char *) &array[j], sizeof(int));
         file.flush();
@@ -118,25 +130,20 @@ bool PagedArray::find(int i){
     else if (page5->getIndex() == i){
         return true;
     }
-    else if (page6->getIndex() == i){
-        return true;
-    }
-    else {
-        return false;
-    }
+    else return page6->getIndex() == i;
 }
 
 void PagedArray::useEmptyPage(int index) {
     int pag = (int) floor(index / 256);
 
     if (page1->getIndex() == -1){
-        cout << "Lleno pag 1 " << endl;
+//        cout << "Lleno pag 1 " << endl;
         int *tmp = readPageInFile(index);
         page1->setPage(tmp);
         page1->setIndex(pag);
     }
     else if (page2->getIndex() == -1){
-        cout << "Lleno pag 2 " << endl;
+//        cout << "Lleno pag 2 " << endl;
         int *tmp = readPageInFile(index);
         page2->setPage(tmp);
         page2->setIndex(pag);
@@ -144,14 +151,14 @@ void PagedArray::useEmptyPage(int index) {
 
     }
     else if (page3->getIndex() == -1){
-        cout << "Lleno pag 3 " << endl;
+//        cout << "Lleno pag 3 " << endl;
         int *tmp = readPageInFile(index);
         page3->setPage(tmp);
         page3->setIndex(pag);
         page5->setIndex(-1);
     }
     else if (page4->getIndex() == -1){
-        cout << "Lleno pag 4 " << endl;
+//        cout << "Lleno pag 4 " << endl;
         int *tmp = readPageInFile(index);
         page4->setPage(tmp);
         page4->setIndex(pag);
@@ -159,14 +166,14 @@ void PagedArray::useEmptyPage(int index) {
         page6->setIndex(-1);
     }
     else if (page5->getIndex() == -1){
-        cout << "Lleno pag 5 " << endl;
+//        cout << "Lleno pag 5 " << endl;
         int *tmp = readPageInFile(index);
         page5->setPage(tmp);
         page5->setIndex(pag);
         page6->setIndex(-1);
     }
     else if (page6->getIndex() == -1){
-        cout << "Lleno pag 6 " << endl;
+//        cout << "Lleno pag 6 " << endl;
         int *tmp = readPageInFile(index);
         page6->setPage(tmp);
         page6->setIndex(pag);
@@ -176,8 +183,18 @@ void PagedArray::useEmptyPage(int index) {
     }
 }
 
-Page *PagedArray::getPageptr(int pag){
+void PagedArray::writeFile() {
+    ofstream resultado("resultado.txt");
 
+    if (resultado.is_open()){
+        for (int i = 0; i < getLength(); ++i) {
+            resultado << this[0][i] << ", ";
+        }
+        resultado.close();
+    }
+}
+
+Page *PagedArray::getPageptr(int pag){
     if (page1->getIndex() == pag){
         return page1;
     }
@@ -224,9 +241,10 @@ int &(PagedArray::operator [](int i)){
     }
     else {
         fifo(i);
-        return getPageptr(pag)->getPage()[i - 256 * pag];
+        return this[0][i - 256 * pag];
     }
 }
+
 
 int PagedArray::getLength() {
     return length;
