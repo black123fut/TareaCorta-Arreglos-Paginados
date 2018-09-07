@@ -4,10 +4,13 @@
 #include "PagedArray.h"
 #include "Sort.h"
 #include "SelectionSort.h"
+#include "InsertionSort.h"
 
 using namespace std;
 
+
 int main() {
+
 
     ofstream archivo("numeros.txt", ofstream::binary);
     for (int i = 0; i < 1700; ++i) {
@@ -85,7 +88,22 @@ int main() {
     x = new SelectionSort(a);
 
     x->SelectionSortAl();
+    cout<<endl;
+    cout<<endl;
+    //INSERTION
+    int array[11] = { 2,1,7,4,3,5,9,6,8,0,19 };
+    size_t length = sizeof(array)/sizeof(int);
 
-    return 0;
+    cout<<"Insertion Sort Aplicado"<<endl;
+    InsertionSort *s;
+    s = new InsertionSort(array);
+    s->InsertionSort1(array, length);
+
+
+
+
+
+
+
 
 }
