@@ -1,3 +1,8 @@
+/**
+ * Tarea Corta Algoritmos y Estructuras de Datos ll
+ * Profesor Isaac Ramírez
+ * Estudiantes: Sebastián Alba, Isaac Benavides y Gabriel Brenes
+ */
 #include <iostream>
 #include <iomanip>
 #include <fstream>
