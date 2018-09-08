@@ -6,7 +6,9 @@
 
 class Sort {
 public:
+    Sort();
     void quickSort(PagedArray *, int, int);
+    void selectionSort(PagedArray *, int);
 
 private:
     PagedArray *array;

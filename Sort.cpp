@@ -5,37 +5,20 @@
 #include <math.h>
 #include "Sort.h"
 
+Sort::Sort(){
+
+}
+
+/**
+ * Intercambia el valor de dos enteros en un array.
+ * @param a Direccion de un entero.
+ * @param b Direccion de un entero.
+ */
 void Sort::swap(int *a, int *b){
     int t = *a;
     *a = *b;
     *b = t;
 }
-//
-//void Sort::quicksort(PagedArray *array, int left, int right) {
-//    int i = left, j = right;
-//    int tmp;
-//    int pivot = array[0][(left + right) / 2];
-//
-//    while (i <= j) {
-//        while (array[0][i] < pivot)
-//            i++;
-//        while (array[0][j] > pivot)
-//            j--;
-//        if (i <= j) {
-//            tmp = array[0][i];
-//            array[0][i] = array[0][j];
-//            array[0][j] = tmp;
-//            i++;
-//            j--;
-//        }
-//    };
-//
-//    /* recursion */
-//    if (left < j)
-//        quicksort(array, left, j);
-//    if (i < right)
-//        quicksort(array, i, right);
-//}
 
 int Sort::partition (PagedArray *arr, int low, int high)
 {
@@ -54,6 +37,16 @@ int Sort::partition (PagedArray *arr, int low, int high)
     }
     swap(&arr[0][i + 1], &arr[0][high]);
     return (i + 1);
+}
+
+void Sort::selectionSort(PagedArray *arr, int length) {
+    for (int i = 0; i < length - 1; i++) {
+        for (int j = i + 1; j < length + 1; j++) {
+            if (arr[0][i] > arr[0][j]){
+                swap(&arr[0][j], &arr[0][i]);
+            }
+        }
+    }
 }
 
 void Sort::quickSort(PagedArray *arr, int low, int high)

@@ -1,7 +1,3 @@
-//
-// Created by enrique on 05/09/18.
-//
-
 #ifndef TAREACORTA_SELECTIONSORT_H
 #define TAREACORTA_SELECTIONSORT_H
 
@@ -22,9 +18,10 @@ public:
 
     SelectionSort();
 
-    void SelectionSortAl(int *arr, int n);//n es el tamano del array
+    void SelectionSortAl(PagedArray *arr, int n);//n es el tamano del array
+    void SelectionSortAl(int arr[], int n);//n es el tamano del array
     void swap(int *xp, int *yp);
-    void printArray(int arr[], int size);
+    void printArray(int *arr, int size);
 
 
 };

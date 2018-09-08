@@ -12,11 +12,7 @@ public:
     void setPage(int *);
     int *(getPage());
     void setIndex(int index);
-    void setItemInArray(int, int);
     int getIndex();
-    void moveLeft();
-    int getPos();
-    void setPos(int);
 
 private:
     int page[256];

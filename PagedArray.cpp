@@ -4,29 +4,25 @@
 
 using namespace std;
 
+/**
+ * Constructor.
+ */
 PagedArray::PagedArray() {
     page1 = new Page;
-    page1->setPos(0);
-
     page2 = new Page;
-    page2->setPos(1);
-
     page3 = new Page;
-    page3->setPos(2);
-
     page4 = new Page;
-    page4->setPos(3);
-
     page5 = new Page;
-    page5->setPos(4);
-
     page6 = new Page;
-    page6->setPos(5);
     currentPages = 0;
 
 //    createBinaryFile(resultado);
 }
 
+/**
+ * Crea un archivo con los numeros de la entrada en forma binaria.
+ * @param input Archivo con enteros.
+ */
 void PagedArray::createBinaryFile(ifstream* input) {
     string contenido((istreambuf_iterator<char>(*input)), istreambuf_iterator<char>());;
 
@@ -57,8 +53,11 @@ void PagedArray::createBinaryFile(ifstream* input) {
     fclose(file);
 }
 
+/**
+ * Quita la primer pagina y mete una pagina nueva en la ultima posicion.
+ * @param index Posicion del numero que se solicita.
+ */
 void PagedArray::fifo(int index) {
-//    cout << "Current: " << currentPages << endl;
     if (currentPages < 6) {
         if (!find(index)) {
             currentPages++;
@@ -73,6 +72,10 @@ void PagedArray::fifo(int index) {
     }
 }
 
+/**
+ * Mueve todas las paginas una posicion adelante.
+ * @param index Posicion del numero que se solicita.
+ */
 void PagedArray::orderPages(int index) {
     page1->setPage(page2);
     page2->setPage(page3);
@@ -84,6 +87,10 @@ void PagedArray::orderPages(int index) {
     page6->setIndex((int) floor(index / 256));
 }
 
+/**
+ * Escribe una pagina en el archivo binario.
+ * @param page Pagina que se va a escribir en el archivo.
+ */
 void PagedArray::writePageInFile(Page *page) {
     int *array = page->getPage();
     int pag = page->getIndex();
@@ -99,6 +106,11 @@ void PagedArray::writePageInFile(Page *page) {
     }
 }
 
+/**
+ * Lee la pagina que se solicita en el archivo binario.
+ * @param index Posicion del numero que se solicita.
+ * @return Un array de enteros.
+ */
 int *(PagedArray::readPageInFile(int index)) {
     int *tmp = new int[256];
     int pag = (int) floor(index / 256);
@@ -114,6 +126,11 @@ int *(PagedArray::readPageInFile(int index)) {
     return tmp;
 }
 
+/**
+ * Busca que la pagina que se ocupa no este en las paginas.
+ * @param i Posicion de la pagina.
+ * @return True si esta en la paginas o False si no.
+ */
 bool PagedArray::find(int i){
     if (page1->getIndex() == i){
         return true;
@@ -133,6 +150,10 @@ bool PagedArray::find(int i){
     else return page6->getIndex() == i;
 }
 
+/**
+ * Busca las paginas vacias para ser usadas.
+ * @param index Posicion del numero que se solicita.
+ */
 void PagedArray::useEmptyPage(int index) {
     int pag = (int) floor(index / 256);
 
@@ -183,41 +204,11 @@ void PagedArray::useEmptyPage(int index) {
     }
 }
 
-void PagedArray::writeFile() {
-    ofstream resultado("resultado.txt");
-
-    if (resultado.is_open()){
-        for (int i = 0; i < getLength(); ++i) {
-            resultado << this[0][i] << ", ";
-        }
-        resultado.close();
-    }
-}
-
-Page *PagedArray::getPageptr(int pag){
-    if (page1->getIndex() == pag){
-        return page1;
-    }
-    else if (page2->getIndex() == pag){
-        return page2;
-    }
-    else if (page3->getIndex() == pag){
-        return page3;
-    }
-    else if (page4->getIndex() == pag){
-        return page4;
-    }
-    else if (page5->getIndex() == pag){
-        return page5;
-    }
-    else if (page6->getIndex() == pag){
-        return page6;
-    }
-    else{
-        return nullptr;
-    }
-}
-
+/**
+ * Retorna el numero de la posicion solicitada.
+ * @param i Posicion del numero que se solicita.
+ * @return El numero que se buscaba.
+ */
 int &(PagedArray::operator [](int i)){
     int pag = (int) floor(i / 256);
 
@@ -244,7 +235,6 @@ int &(PagedArray::operator [](int i)){
         return this[0][i - 256 * pag];
     }
 }
-
 
 int PagedArray::getLength() {
     return length;

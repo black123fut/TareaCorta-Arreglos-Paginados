@@ -24,12 +24,10 @@ public:
     void createBinaryFile(ifstream *);
     void fifo(int);
     bool find(int);
-    Page *getPageptr(int);
     void useEmptyPage(int);
     void orderPages(int);
     int *(readPageInFile(int));
     void writePageInFile(Page *);
-    void writeFile();
     int getLength();
     int &(operator [](int));
 
